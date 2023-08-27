@@ -28,11 +28,12 @@ addEventListener('resize', () => {
 
 // Objects
 class Ball {
-  constructor(x, y, radius, color) {
+  constructor(x, y, dy, radius, color) {
     this.x = x
     this.y = y
     this.radius = radius
     this.color = color
+    this.dy = dy;
   }
 
   draw() {
@@ -44,6 +45,8 @@ class Ball {
   }
 
   update() {
+    if (this.y + this.radius > canvas.height ) this.dy = -this.dy; // change direction when reach bottom of screem
+    this.y += this.dy; // velocity
     this.draw()
   }
 }
@@ -54,7 +57,7 @@ let ball;
 function init() {
 
   objects = []
-  ball = new Ball(canvas.width / 2, canvas.height / 2, 30, 'red')
+  ball = new Ball(canvas.width / 2, canvas.height / 2, 2, 30, 'red')
   for (let i = 0; i < 400; i++) {
     // objects.push()
   }

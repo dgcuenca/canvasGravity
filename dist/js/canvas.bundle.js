@@ -125,13 +125,14 @@ addEventListener('resize', function () {
 }); // Objects
 
 var Ball = /*#__PURE__*/function () {
-  function Ball(x, y, radius, color) {
+  function Ball(x, y, dy, radius, color) {
     _classCallCheck(this, Ball);
 
     this.x = x;
     this.y = y;
     this.radius = radius;
     this.color = color;
+    this.dy = dy;
   }
 
   _createClass(Ball, [{
@@ -146,6 +147,10 @@ var Ball = /*#__PURE__*/function () {
   }, {
     key: "update",
     value: function update() {
+      if (this.y + this.radius > canvas.height) this.dy = -this.dy; // change direction when reach bottom of screem
+
+      this.y += this.dy; // velocity
+
       this.draw();
     }
   }]);
@@ -159,7 +164,7 @@ var ball;
 
 function init() {
   objects = [];
-  ball = new Ball(canvas.width / 2, canvas.height / 2, 30, 'red');
+  ball = new Ball(canvas.width / 2, canvas.height / 2, 2, 30, 'red');
 
   for (var i = 0; i < 400; i++) {// objects.push()
   }
