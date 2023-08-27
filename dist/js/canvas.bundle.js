@@ -124,9 +124,9 @@ addEventListener('resize', function () {
   init();
 }); // Objects
 
-var _Object = /*#__PURE__*/function () {
-  function Object(x, y, radius, color) {
-    _classCallCheck(this, Object);
+var Ball = /*#__PURE__*/function () {
+  function Ball(x, y, radius, color) {
+    _classCallCheck(this, Ball);
 
     this.x = x;
     this.y = y;
@@ -134,7 +134,7 @@ var _Object = /*#__PURE__*/function () {
     this.color = color;
   }
 
-  _createClass(Object, [{
+  _createClass(Ball, [{
     key: "draw",
     value: function draw() {
       c.beginPath();
@@ -150,14 +150,16 @@ var _Object = /*#__PURE__*/function () {
     }
   }]);
 
-  return Object;
+  return Ball;
 }(); // Implementation
 
 
 var objects;
+var ball;
 
 function init() {
   objects = [];
+  ball = new Ball(canvas.width / 2, canvas.height / 2, 30, 'red');
 
   for (var i = 0; i < 400; i++) {// objects.push()
   }
@@ -167,7 +169,8 @@ function init() {
 function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
-  c.fillText('HTML CANVAS BOILERPLATE', mouse.x, mouse.y); // objects.forEach(object => {
+  ball.update(); // c.fillText('HTML CANVAS BOILERPLATE', mouse.x, mouse.y)
+  // objects.forEach(object => {
   //  object.update()
   // })
 }
